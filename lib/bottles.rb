@@ -1,26 +1,45 @@
 class Bottles
+  def remaining_containers(count)
+    case count
+    when 0
+      "no more bottles of beer"
+    when 1
+      "1 bottle of beer"
+    else
+      "#{count} bottles of beer"
+    end
+  end
+
+  def intro_sentence(count)
+    "#{remaining_containers(count)} on the wall, #{remaining_containers(count)}.".capitalize
+  end
+
+  def instructions(count)
+    case count
+    when 0
+      "Go to the store and buy some more"
+    when 1
+      "Take it down and pass it around"
+    else
+      "Take one down and pass it around"
+    end
+  end
+
   def verse(verse_iteration)
+    result = intro_sentence(verse_iteration) + "\n#{instructions(verse_iteration)}, "
     case verse_iteration
     when 0
-    <<-VERSE
-No more bottles of beer on the wall, no more bottles of beer.
-Go to the store and buy some more, 99 bottles of beer on the wall.
-    VERSE
+      result + "99 bottles of beer on the wall.
+"
     when 1
-    <<-VERSE
-1 bottle of beer on the wall, 1 bottle of beer.
-Take it down and pass it around, no more bottles of beer on the wall.
-    VERSE
+      result + "no more bottles of beer on the wall.
+"
     when 2
-    <<-VERSE
-#{verse_iteration} bottles of beer on the wall, #{verse_iteration} bottles of beer.
-Take one down and pass it around, #{verse_iteration - 1} bottle of beer on the wall.
-VERSE
+      result + "#{verse_iteration - 1} bottle of beer on the wall.
+"
     else
-    <<-VERSE
-#{verse_iteration} bottles of beer on the wall, #{verse_iteration} bottles of beer.
-Take one down and pass it around, #{verse_iteration - 1} bottles of beer on the wall.
-VERSE
+      result + "#{verse_iteration - 1} bottles of beer on the wall.
+"
     end
   end
 
